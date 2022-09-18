@@ -1,0 +1,75 @@
+﻿@model ProjectHUB.Models.TopicModel
+
+@{
+    ViewData["Title"] = "Unselect";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    body {
+        background: white;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    img {
+        text-align: center;
+    }
+
+</style>
+
+
+<body>
+    <div class="card">
+        <h1><b>Would you like to unselect @Model.ShortTitle</b></h1>
+        <hr />
+        <div class="form-group">
+
+            <div class="col">
+                @Html.DisplayNameFor(m => Model.Description)
+            </div>
+            <div class="col">
+                @Html.DisplayFor(m=> Model.Description)
+            </div>
+            <div class="col">
+                @Html.DisplayNameFor(m => Model.MentorContact)
+            </div>
+            <div class="col">
+                @Html.DisplayFor(m=> Model.MentorContact)
+            </div>
+            <div class="col">
+                @Html.DisplayNameFor(m => Model.DateCreated)
+            </div>
+            <div class="col">
+                @Html.DisplayFor(m=> Model.DateCreated)
+            </div>
+
+        </div>
+        <br />
+        <form asp-action="Unselect">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Unselect" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+    <center>
+        <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+    </center>
+</body>

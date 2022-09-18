@@ -1,0 +1,70 @@
+﻿@model ProjectHUB.Models.AOKModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: white;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <div class="card">
+        <h1><b>@Model.ShortTitle Details</b></h1>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ShortTitle)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ShortTitle)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ThemeShortTitle)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ThemeShortTitle)
+            </dd>
+                        <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.StudentCount)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.StudentCount)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ExpertContact)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ExpertContact)
+            </dd>
+        </dl>
+        <div>
+            @if (User.IsInRole("Admin") || Model.ExpertContact == User.Identity.Name)
+            {
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit  |</a>
+            }
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+</body>

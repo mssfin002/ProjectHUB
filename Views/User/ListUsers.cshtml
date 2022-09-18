@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ProjectHUB.Areas.Identity.Data.ProjectHUBUser>
+@using System.Web
+
+<style>
+    body {
+        background: white;
+    }
+
+    .column {
+        width: 50%;
+        text-align: center;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        text-align: right;
+        border: 2px;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+    }
+
+    h2 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
+    }
+
+    h3 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+</style>
+
+
+<body>
+<div class="card">
+        <h1>Students and Mentors</h1>
+        <hr />
+        <div style="height:340px; overflow:auto;">
+            <table class="table table-bordered table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">User Id</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Student Number</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <th scope="row">@user.Id</th>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Email</td>
+                            <td>@user.StudentNumber</td>
+                            <td>
+                                <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <p>
+                Find by name: @Html.TextBox("SearchString")
+                <input type="submit" value="Search" />
+            </p>
+            <br />
+        }
+
+</div>
+</body>

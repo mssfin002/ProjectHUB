@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ProjectHUB.Models.ThemeModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background: white;
+    }
+
+    .column {
+        width: 50%;
+        text-align: center;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        text-align: right;
+        border: 2px;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+        text-align : center;
+    }
+
+    h2 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
+    }
+
+    h3 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    p {
+        text-align : left;
+    }
+</style>
+
+
+
+<div class="card">
+    <h1><b>Themes Index</b></h1>
+    @if (User.IsInRole("Expert"))
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShortTitle)
+                </th>
+                <th>
+                    Actions
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortTitle)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Expert"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                        }
+                        <a asp-controller="AOK" asp-action="Index" asp-route-shortTitle="@item.ShortTitle">Areas of Knowledge</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<hr />
+<center>
+    <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+</center>

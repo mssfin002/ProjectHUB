@@ -1,0 +1,69 @@
+﻿@model ProjectHUB.Models.AOKModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background: white;
+        align-content: center;
+    }
+
+    input {
+        text-align : center;
+    }
+
+    h2 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
+    }
+
+
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+        align-items: center;
+    }
+
+</style>
+
+<body>
+    <div class="card">
+        <h2><b>Create an Area of Knowledge</b></h2>
+        <hr />
+        <div class="row">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ShortTitle" class="control-label"></label><br />
+                    <input asp-for="ShortTitle" class="form-control" />
+                    <span asp-validation-for="ShortTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="ExpertContact" class="control-label"></label>
+                    <input asp-for="ExpertContact" class="form-control" value="@User.Identity.Name" />
+                    <span asp-validation-for="ExpertContact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThemeShortTitle" class="control-label"></label><br />
+                    <input asp-for="ThemeShortTitle" class="form-control" />
+                    <span asp-validation-for="ThemeShortTitle" class="text-danger"></span>
+                </div><br />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />|
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,127 @@
+﻿@model ProjectHUB.Models.TopicModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: white;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+        img {
+        text-align : center;
+    }
+</style>
+
+
+<body>
+    <div class="card">
+        <h1><b>@Model.ShortTitle Details</b></h1>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ShortTitle)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ShortTitle)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.MentorContact)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.MentorContact)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.isChosen)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.isChosen)
+            </dd>
+
+            @if (Model.isChosen == true)
+            {
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.StudentContact)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.StudentContact)
+            </dd>
+            }
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.aokShortTitle)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.aokShortTitle)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.DateCreated)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.DateUpdated)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.DateUpdated)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.SurnamesOfStaffWorkingOnThis)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.SurnamesOfStaffWorkingOnThis)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ExternalCollaborators)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ExternalCollaborators)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.FundingDetails)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.FundingDetails)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.RepresentativeResearchOutput)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.RepresentativeResearchOutput)
+            </dd>
+        </dl>
+        <div>
+            @if(User.IsInRole("Admin") || Model.MentorContact == User.Identity.Name)
+            {
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit  |</a>
+            }
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+    <center>
+        <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+    </center>
+</body>

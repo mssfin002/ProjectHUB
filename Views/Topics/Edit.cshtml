@@ -1,0 +1,113 @@
+﻿@model ProjectHUB.Models.TopicModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: white;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    img {
+        text-align: center;
+    }
+
+    input {
+        width: 70%;
+        text-align:center;
+    }
+</style>
+
+<body>
+    <div class="row">
+        <div class="card">
+            <h1><b>Edit @Model.ShortTitle</b></h1>
+            <hr />
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="ShortTitle" class="control-label"></label><br />
+                    <input asp-for="ShortTitle" class="form-control" />
+                    <span asp-validation-for="ShortTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label><br />
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Approved" class="control-label"></label><br />
+                    <input asp-for="Approved" class="form-control" />
+                    <span asp-validation-for="Approved" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MentorContact" class="control-label"></label><br />
+                    <input asp-for="MentorContact" class="form-control" />
+                    <span asp-validation-for="MentorContact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AreaOfKnowledge" class="control-label"></label><br />
+                    <input asp-for="AreaOfKnowledge" class="form-control" />
+                    <span asp-validation-for="AreaOfKnowledge" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SurnamesOfStaffWorkingOnThis" class="control-label"></label><br />
+                    <input asp-for="SurnamesOfStaffWorkingOnThis" class="form-control" />
+                    <span asp-validation-for="SurnamesOfStaffWorkingOnThis" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExternalCollaborators" class="control-label"></label><br />
+                    <input asp-for="ExternalCollaborators" class="form-control" />
+                    <span asp-validation-for="ExternalCollaborators" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FundingDetails" class="control-label"></label><br />
+                    <input asp-for="FundingDetails" class="form-control" />
+                    <span asp-validation-for="FundingDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RepresentativeResearchOutput" class="control-label"></label><br />
+                    <input asp-for="RepresentativeResearchOutput" class="form-control" />
+                    <span asp-validation-for="RepresentativeResearchOutput" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" /> |
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <center>
+        <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+    </center>
+</body>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

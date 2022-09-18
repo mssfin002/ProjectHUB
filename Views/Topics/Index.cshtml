@@ -1,0 +1,155 @@
+﻿@model IEnumerable<ProjectHUB.Models.TopicModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var submitted = false;
+}
+<style>
+    body {
+        background: white;
+    }
+
+    .column {
+        width: 50%;
+        text-align: center;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        text-align: right;
+        border: 2px;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+        text-align: center;
+    }
+
+    h2 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
+    }
+
+    h3 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    img {
+        text-align : center;
+    }
+
+</style>
+
+
+
+
+<body>
+    <div class="card">
+        <h1><b>Topics</b></h1>
+
+        <p>
+            @if (User.IsInRole("Post-GradStudent"))
+            {
+                <a asp-action="Create">Create New  |</a>
+            }
+            <a asp-controller="Topics" asp-action="Index" asp-route-id="null">Clear Filters  |</a>
+            <a asp-controller="AOK" asp-action="Index">Return to Areas of Knowledge</a>
+        </p>
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShortTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MentorContact)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.aokShortTitle)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach(var model in Model)
+                {
+                    @if (model.StudentContact == User.Identity.Name)
+                    {
+                        submitted = true;
+                    }
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.ShortTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.MentorContact)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.aokShortTitle)
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Mentor") && item.Approved == false)
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+
+                            }
+                            @if (User.Identity.Name == item.MentorContact || User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                            @if (item.isChosen == false && !User.IsInRole("Mentor") && item.StudentContact != User.Identity.Name && submitted == false)
+                            {
+                                <a asp-controller="Topics" asp-action="Select" asp-route-id="@item.Id">Select</a>
+                            }
+
+                            @if(item.isChosen == true && item.StudentContact == User.Identity.Name)
+                            {
+                                <a asp-controller="Topics" asp-action="Unselect" asp-route-id="@item.Id">Unselect</a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <center>
+        <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+    </center>
+</body>
+
+

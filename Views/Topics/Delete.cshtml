@@ -1,0 +1,60 @@
+﻿@model ProjectHUB.Models.TopicModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: white;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    img {
+        text-align: center;
+    }
+
+</style>
+
+<body>
+    <div class="row">
+        <div class="card">
+            <h1><b>Delete @Model.ShortTitle</b></h1>
+            <hr />
+            <div class="form-group">
+                <div class="col">
+                    <b>@Html.DisplayNameFor(model => model.Id)</b> :
+                    @Html.DisplayFor(model => model.Id)
+                </div>
+                <div class="col">
+                    <b>@Html.DisplayNameFor(model => model.ShortTitle)</b> :
+                    @Html.DisplayFor(model => model.ShortTitle)
+                </div>
+                <div class="col">
+                    <b>@Html.DisplayNameFor(model => model.Description)</b> :
+                    @Html.DisplayFor(model => model.Description)
+                </div><br />
+            </div>
+        </div>
+    </div>
+    <center>
+        <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+    </center>
+</body>

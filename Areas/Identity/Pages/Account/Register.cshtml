@@ -1,0 +1,111 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        background: white;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        text-align: center;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    h1 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 48px;
+        text-align: center;
+    }
+
+    h2 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
+    }
+
+    h3 {
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+
+    .card {
+        text-align: center;
+        background-color: lightsteelblue;
+        padding: 2.5%;
+    }
+
+    .form-floating {
+        padding: 1%
+    }
+</style>
+
+<br />
+
+<body>
+    <div class="card">
+        <div class="row">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Create a new account.</h2>
+                <hr />
+                <div style="text-align: center;">
+
+                    <img src="~/HorizontalLog.png" class="img-fluid" alt="HorizontalLogo" height="80" width="500" />
+
+                </div><br />
+                <div class="column">
+                    <div class="form-floating">
+                        <input asp-for="Input.FirstName" class="form-control" aria-required="true" />
+                        <label asp-for="Input.FirstName"></label>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="Input.LastName" class="form-control" aria-required="true" />
+                        <label asp-for="Input.LastName"></label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="Input.StudentNumber" class="form-control" aria-required="true" />
+                        <label asp-for="Input.StudentNumber"></label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="form-floating">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="off" aria-required="true" />
+                        <label asp-for="Input.Email"></label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="off" aria-required="true" />
+                        <label asp-for="Input.Password"></label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" aria-required="true" />
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span><br /><br />
+                    </div>
+                </div>
+                <button id="registerSubmit" type="submit" class="w-50 btn btn-lg btn-primary">Register</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
